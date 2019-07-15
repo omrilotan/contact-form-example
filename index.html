@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Contact Form Example</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+		<meta name="googlebot" content="noindex">
+		<meta name="robots" content="noindex">
+		<link rel="stylesheet" href="styles.css">
+		<link rel="author" href="https://github.com/omrilotan/contact-form-example">
+		<link rel="help" href="https://medium.com/@omrilotan/contact-form-for-static-websites-56650393f78c">
+		<link rel="license" href="https://raw.githubusercontent.com/omrilotan/contact-form-example/master/LICENSE">
+	</head>
+	<body>
+		<main>
+			<p id="feedback">Speak your mind!</p>
+			<form id="theform" action="https://hooks.zapier.com/hooks/catch/616786/oo3yxpc/" method="post">
+				<input type="text" name="name" placeholder="Name" pattern="^[\w'\s]*$" x-custom-validation-message="Please fill in your name in English." required>
+				<input type="email" name="email" placeholder="Email address" required>
+				<input type="phone" name="phone" placeholder="Phone numer" pattern="^[\d\-\s\.,]{2,}$" x-custom-validation-message="Your phone number must contain digits. Also acceptable are: dash, space, dots, and commas.">
+				<textarea name="message" placeholder="Query" required></textarea>
+				<button>Send</button>
+			</form>
+		</main>
+		<script type="module">
+import enhanceForm from './enhance-form.mjs'
+enhanceForm({
+	form: theform,
+	feedback
+});
+		</script>
+	</body>
+</html>

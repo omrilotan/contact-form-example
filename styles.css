@@ -1,0 +1,147 @@
+:root {
+	--colour-background: rgba(255, 255, 255, 1);
+	--colour-shadow: rgba(0, 0, 0, .4);
+	--colour-strong: rgba(22, 160, 133, 1);
+	--colour-weak: rgba(22, 160, 133, .5);
+	--colour-faint: rgba(22, 160, 133, .3);
+	--colour-super-faint: rgba(22, 160, 133, .05);
+	--colour-error: rgba(192, 57, 43, 1);
+	--colour-error-weak: rgba(192, 57, 43, .4);
+	--colour-error-faint: rgba(192, 57, 43, .2);
+	--colour-button-background: var(--colour-background);
+	--colour-button-hover: var(--colour-super-faint);
+	--colour-button-text: inherit;
+	--colour-button-text-shadow: rgba(255, 255, 255, 1);
+}
+@media(prefers-color-scheme:dark) {
+	:root {
+		--colour-background: rgba(0, 0, 0, 1);
+		--colour-shadow: var(--colour-weak);
+		--text-shadow: rgba(0, 0, 0, 1);
+		--colour-strong: rgba(22, 160, 133, 1);
+		--colour-weak: rgba(22, 160, 133, .5);
+		--colour-faint: rgba(22, 160, 133, .3);
+		--colour-super-faint: rgba(22, 160, 133, .05);
+		--colour-error: rgba(192, 57, 43, 1);
+		--colour-error-weak: rgba(192, 57, 43, .4);
+		--colour-error-faint: rgba(192, 57, 43, .2);
+		--colour-button-background: var(--colour-strong);
+		--colour-button-hover: var(--colour-weak);
+		--colour-button-text: var(--colour-faint);
+		--colour-button-text-shadow: rgba(0, 0, 0, 1);
+	}
+}
+* {
+	font: inherit;
+	color: inherit;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	box-shadow: none;
+}
+body {
+	font: 100 100%/120% -apple-system, "BlinkMacSystemFont", "Helvetica Neue", "Helvetica", "Lucida Grande", "Arial", sans-serif;
+	color: var(--colour-strong);
+	background: var(--colour-background);
+}
+main {
+	width: 80%;
+	margin: 2em auto 0;
+	padding: 1em;
+	box-shadow: 0 10px 20px -10px var(--colour-shadow);
+}
+@media(max-width:800px) {
+	main {
+		width: 100%;
+		margin: 0 auto;
+		box-shadow: none;
+	}
+}
+form {
+	display: block;
+	width: 90%;
+	margin: 1em auto;
+	font-size: 2em;
+	line-height: 1em;
+	overflow: hidden;
+	max-height: 999px;
+	transition: max-height 1s ease-out;
+}
+form.folded {
+	max-height: 0;
+}
+p {
+	font-size: 1.5em;
+	text-align: center;
+	margin: 1em 0;
+}
+.error {
+	color: var(--colour-error);
+}
+input, textarea, button {
+	background: transparent;
+	text-indent: .2em;
+	margin-bottom: 1em;
+	border-style: solid;
+	border-width: 1px;
+}
+input, textarea, button,
+input:invalid:placeholder-shown, textarea:invalid:placeholder-shown {
+	border-color: var(--colour-weak);
+}
+input, textarea {
+	width: 100%;
+}
+input {
+	border-width: 0;
+	border-bottom-width: 1px;
+}
+textarea {
+	border-radius: 3px;
+	height: 4em;
+	resize: vertical;
+}
+input:focus, textarea:focus {
+	border-color: var(--colour-strong);
+}
+button {
+	background: var(--colour-button-background);
+	color: var(--colour-button-text);
+	text-shadow: 0 1px 0 var(--colour-button-text-shadow);
+	cursor: pointer;
+	padding: .25em 1em;
+	display: block;
+	margin: 0 auto;
+	min-width: 25%;
+}
+button:hover, button:focus {
+	background: var(--colour-button-hover);
+}
+input:invalid {
+	color: var(--colour-error);
+	border-color: var(--colour-error-weak);
+}
+
+input:focus:invalid {
+	border-color: var(--colour-error);
+}
+::placeholder {
+  color: var(--colour-faint);
+}
+
+button {
+  position: relative;
+}
+form[x-disabled] button:before {
+	display: inline-block;
+	content: "⏳";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: .3em;
+  background: var(--colour-button-background);
+  cursor: progress;
+}
