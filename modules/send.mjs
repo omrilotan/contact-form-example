@@ -1,3 +1,7 @@
+let ip;
+
+fetch('https://httpbin.org/ip').then(res => res.json()).then(({ origin }) => { ip = origin }).catch(() => null);
+
 /**
  * Send the form over http
  * @param  {HTMLFormElement} form
@@ -13,6 +17,15 @@ export default async function send(target) {
 			target,
 			({name, value}) => ({[name]: value})
 		));
+
+		ip && Object.assign(data, { ip });
+
+		try {
+			Object.assign(data, {
+				browser: Object.values(navigator.userAgentData?.toJSON()?.brands?.pop()).join(':'),
+				mobile: navigator.userAgentData?.mobile
+			});
+		} catch (error) { /* ignore */ }
 
 		const result = await fetch(url, {
 			method,
